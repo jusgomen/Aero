@@ -66,7 +66,10 @@ def sendFFT(freq, xfft, yfft, zfft):
 				                auth=requests.auth.HTTPBasicAuth(
 				                  'admin',
 				                  'uninorte'))	
+	return None
 
+
+#No warnings available
 GPIO.setwarnings(False)
 
 #Configure Radio
