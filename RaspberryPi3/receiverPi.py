@@ -66,6 +66,8 @@ def sendFFT(freq, xfft, yfft, zfft):
 				                auth=requests.auth.HTTPBasicAuth(
 				                  'admin',
 				                  'uninorte'))	
+	except:
+		pass
 	return None
 
 
