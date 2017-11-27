@@ -7,6 +7,7 @@ Created on Sun Nov  5 05:23:45 2017
 """
 
 # -*- coding: utf-8 -*-
+import time
 
 #Librería: Base de datos de PostgreSQL
 import psycopg2
@@ -125,15 +126,20 @@ def getRequest(freq, x_fft, y_fft, z_fft):
 ##                         MAIN                           ##
 ############################################################
 
-
-#Obtains data from the Database
-(x_result, y_result, z_result, success) =queryData(5000)
-
-if success: 
-    #Computes FFT
-    (f, xf, yf, zf)=getFFT(x_result, y_result, z_result)
+while True:
+    #Obtains data from the Database
+    (x_result, y_result, z_result, success) =queryData(5000)
     
-    #Uploads FFT result to Database
-    uploaded=getRequest(f, xf, yf, zf)
+    if success: 
+        #Computes FFT
+        (f, xf, yf, zf)=getFFT(x_result, y_result, z_result)
+        
+        #Uploads FFT result to Database
+        uploaded=getRequest(f, xf, yf, zf)
+        
+        #Waits 5 minutes till to calculate again
+        time.sleep(5*60)
+        
+    
 
 
